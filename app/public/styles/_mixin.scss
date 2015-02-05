@@ -1,0 +1,56 @@
+
+// A set of useful SASS mixins
+
+
+//Changes the color and the hovering properties of the navbar
+@mixin navbar-variant($color, $font-color: rgba(255, 255, 255, 0.8), $hover-color: #f6f6f6, $hover-bg: rgba(0, 0, 0, 0.1)) {
+    background-color: $color;
+    //Navbar links
+    .nav a {
+        color: $font-color;
+    }
+
+    .nav > li > a:hover,
+        .nav > li > a:active,
+        .nav > li > a:focus,
+        .nav .open > a,
+        .nav .open > a:hover,
+        .nav .open > a:focus {
+        background: $hover-bg;
+        color: $hover-color;
+    }
+
+    //Add color to the sidebar toggle button
+    .sidebar-toggle .icon-bar {
+        background: $font-color;
+
+    }
+    .sidebar-toggle:hover .icon-bar {
+        background: $hover-color!important;
+    }
+}
+//Logo color variation
+@mixin logo-variant($color) {
+    background-color: $color;
+    color: #f9f9f9;
+    > a {
+        color: #f9f9f9;
+    }
+
+    &:hover {
+        background: darken($color, 1%);
+    }
+}
+
+//Box solid color variantion creator
+@mixin box-solid-variant($color) {
+    > .box-header {
+        color: #fff;
+        background: $color;
+        background-color: $color;
+        a {
+            color: #444;
+        }
+    }
+}
+

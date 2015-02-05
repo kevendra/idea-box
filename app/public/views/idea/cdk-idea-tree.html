@@ -1,0 +1,17 @@
+<div data-ng-show="idea">
+  <div class="media">
+    <div class="media-left"></div>    
+    <div class="media-body">
+      <h4 class="media-heading">
+        {{idea.title}} <span class="small text-warning">({{idea.category}})</span>
+      </h4>
+      <span ng-bind-html="idea.description"></span>
+      <!-- <a data-ng-click="reply(idea)" class="alert-link">Reply</a> -->
+      <button type="button" class="btn btn-xs btn-default" data-ng-click="reply(idea)" data-ng-hide="hideReply">Reply</button>
+      <div data-ng-repeat="childIdea in idea.ideaList">
+        <div data-cdk-idea-tree data-ng-model="childIdea"></div>
+      </div>
+    
+    </div>
+  </div>
+</div>

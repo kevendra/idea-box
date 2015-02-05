@@ -1,0 +1,64 @@
+{
+  "status": "SUCCESS",
+  "data": {
+  "ideaList": [
+    {
+      "id": 1,
+      "title": "title 12345678901",
+      "description": "description description 1",
+      "category": "operations",
+      "created": null,
+      "ideaList": [
+        {
+          "id": 11,
+          "title": "title 12345678901",
+          "description": "description <b>description</b> 11",
+          "category": "operations",
+          "created": null
+        },
+        {
+          "id": 12,
+          "title": "title 12345678902",
+          "description": "description description 12 ",
+          "category": "operations",
+          "created": null
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "title 12345678902",
+      "description": "description description 2 ",
+      "category": "operations",
+      "created": null
+    },
+    {
+      "id": 3,
+      "title": "title 12345678903",
+      "description": "description description 3 ",
+      "category": "operations",
+      "created": null
+    },
+    {
+      "id": 4,
+      "title": "title 12345678904",
+      "description": "description description 4",
+      "category": "operations",
+      "created": null
+    }
+  ]
+},
+"msg": [
+    {
+      "type": "success",
+      "value": [
+        {
+          "title": null,
+          "text": "idea found",
+          "param": null
+        }
+      ]
+    }
+  ],
+  "error": null
+}

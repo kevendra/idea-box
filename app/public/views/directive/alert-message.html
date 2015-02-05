@@ -1,0 +1,6 @@
+<div data-ng-repeat="messageList in messages" data-ng-class="messageList.type && 'alert-' + messageList.type"  class="alert" >
+	<p data-ng-repeat="message in messageList.value">
+		<b>{{message.title}}</b>
+		<span>{{message.text}}</span>
+	</p>
+</div>

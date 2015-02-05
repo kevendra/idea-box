@@ -1,0 +1,92 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+
+  <title>Idea Box</title>
+
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <link rel="shortcut icon" href="favicon.ico"/>
+
+  <!-- build:css({.tmp,app}) public/styles/style.css -->
+
+  <link rel="stylesheet" href="public/styles/sms-sprite.css">
+  <link rel="stylesheet" href="public/styles/main.css"/>
+  <link rel='stylesheet' href='bower_components/textAngular/src/textAngular.css'>
+
+  <!-- endbuild -->
+
+</head>
+<body class="skin-blue" data-ng-app="com.cdk.internal.ideaApp">
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<!-- Wrap all page content here Or Add site or application content here -->
+<div data-ui-view></div>
+
+<!-- build:js(.) public/scripts/oldieshim.js -->
+<!--[if lt IE 9]>
+<script src="bower_components/es5-shim/es5-shim.js"></script>
+<script src="bower_components/json3/lib/json3.min.js"></script>
+<![endif]-->
+<!-- endbuild -->
+
+<!-- build:js(.) public/scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/json3/lib/json3.js"></script>
+
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script><!-- angular-ui bootstrap-->
+
+<script type="text/javascript" src='bower_components/textAngular/dist/textAngular-rangy.min.js'></script>
+<script type="text/javascript" src='bower_components/textAngular/dist/textAngular-sanitize.min.js'></script>
+<script type="text/javascript" src='bower_components/textAngular/dist/textAngular.min.js'></script>
+
+<!-- endbower -->
+<!-- endbuild -->
+
+
+<!-- build:js({.tmp,app}) public/scripts/scripts.js -->
+<script src="public/scripts/config/app.js"></script>
+<script src="public/scripts/config/router.js"></script>
+<script src="public/scripts/config/interceptor.js"></script>
+
+<script src="public/scripts/features/share/alert-message.js"></script>
+<script src="public/scripts/features/share/api-service.js"></script>
+<script src="public/scripts/features/share/env-service.js"></script>
+<script src="public/scripts/features/share/storage-service.js"></script>
+<script src="public/scripts/features/share/global-data-service.js"></script>
+<script src="public/scripts/features/share/value-service.js"></script>
+
+<script src="public/scripts/features/share/cdk-header-directive.js"></script>
+<script src="public/scripts/features/share/modal-controller.js"></script>
+
+<script src="public/scripts/features/idea/idea-service.js"></script>
+<script src="public/scripts/features/idea/idea-controller.js"></script>
+<script src="public/scripts/features/idea/idea-tree-controller.js"></script>
+<script src="public/scripts/features/idea/cdk-idea-tree-directive.js"></script>
+
+<!--
+<script src="public/scripts/features/user/user-service.js"></script>
+<script src="public/scripts/features/user/user-controller.js"></script>
+<script src="public/scripts/features/user/user-profile-controller.js"></script>
+<script src="public/scripts/features/user/user-password-controller.js"></script>
+<script src="public/scripts/features/user/create-edit-user-profile-controller.js"></script>
+<script src="public/scripts/features/user/create-edit-user-profile-directive.js"></script>
+<script src="public/scripts/features/user/user-invite-controller.js"></script>
+-->
+
+<!-- endbuild -->
+
+</body>
+</html>

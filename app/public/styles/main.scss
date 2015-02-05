@@ -1,0 +1,79 @@
+$icon-font-path: "../../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+//NOTE: comment $fa-font-path from bower_components/font-awesome/scss/_variables.scss
+$fa-font-path:   "../../bower_components/font-awesome/fonts";
+
+// bower:scss
+//@import "bootstrap-sass-official/assets/stylesheets/bootstrap-compass.scss";
+@import "bootstrap-sass-official/assets/stylesheets/bootstrap";//NOTE: import bootstrap.scss
+@import "font-awesome/scss/font-awesome";//NOTE: import font-awesome.scss
+// endbower
+
+//$iconSpritePath: "../images/glyphicons-halflings.png";
+//$iconWhiteSpritePath: "../images/glyphicons-halflings-white.png";
+//$icon-font-path: "/bower_components/sass-bootstrap/fonts/";
+
+@import "compass";
+@import "compass/css3/border-radius";
+// @import 'sass-bootstrap/lib/bootstrap';
+
+
+//@charset "UTF-8";
+
+// see http://zerosixthree.se/8-sass-mixins-you-must-have-in-your-toolbox/
+
+//google fonts
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);
+
+
+//MISC
+//----
+@import "_color";// ./config/colors
+@import "_var";
+@import "_mixin-common";
+@import "_mixin";
+
+
+.cdk-logo {
+  background-image: url($cdk-logo);
+  height: 14px;
+  width: 136px;
+  margin: 17px 12px 0 0;
+  float: left;
+}
+.main-section{
+  .welcome-msg{
+    text-align: center;
+    margin-top: 80px;
+    .msg{
+      font-family: $font-family;
+      font-weight: 300;
+      font-size: 32px;
+    }  
+    .fa-lightbulb-o{
+      font-size: 52px;
+    }
+  }
+}
+.container-msg {
+  position: relative;
+  .alert-msg {
+    position: absolute;
+    top: -8px;
+    z-index: 1000;
+    right: 0;
+    left: 0;
+  }
+}
+.content{
+  .media-left {
+    background-image: url($green-circle);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    height: 16px;
+    width: 16px;
+  }
+  .media{
+    margin-top: 6px;
+  }
+}

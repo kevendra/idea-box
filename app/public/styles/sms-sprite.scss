@@ -1,0 +1,7 @@
+$sms-sprite-spacing: 2px;
+@import "../images/sms-sprite/*.png";
+//@include all-my-icons-sprites;
+
+.facebook-33{@include sms-sprite-sprite(AddStreams_ICON_Facebook);}
+.google-33{@include sms-sprite-sprite(AddStreams_ICON_Google);}
+.twitter-33{@include sms-sprite-sprite(AddStreams_ICON_Twitter);}

@@ -1,0 +1,71 @@
+/* colors.scss
+ * Defines basic colors.
+ * 
+ * Any LESS files placed in here are added to the LESS processor's run
+ * paths, so that @imports will work when you need access to a variable
+ * in any given LESS file.
+ *  
+ * usage:
+ *	@import 'colors'; or @import "./config/colors";
+ *
+ *	.test-color {
+ *		background-color: $primary;
+ *	}
+ */
+
+$primary: #333;
+$turquoise: #1ABC9C;
+$green-sea : #16A085;
+$emerald : #2ECC71;
+$nephritis : #27AE60;
+$peter-river : #3498DB;
+$belize-hole : #2980B9;
+$amethyst : #9B59B6;
+$wisteria : #8E44AD;
+$wet-asphalt : #34495E;
+$midnight-blue : #2C3E50;
+
+$blood-red :#d63105;
+
+$turquoiseBlue: #2ECBD6;
+$turquoise-blue: #40E0D0;//2ECBD6 40E0D0 00E5EE
+$man-red: #F90101;
+$man-blue: #0266C8;
+$man-yellow: #F2B50F;
+$man-green: #00933B;
+$lime: #288d26;
+
+$chalk-color-1: #e3e13b;
+$chalk-color-2: #b94cc3;
+$chalk-color-3: #00b2c0;
+/*
+
+.gradient-linear-banner
+#5585AD
+#7EBAEE, #5585AD
+
+.gradient-gray
+#E6E6E6
+#F6F6F6, #E6E6E6
+
+#1ABC9C
+TURQUOISE
+#16A085
+GREEN SEA
+#2ECC71
+EMERALD
+#27AE60
+NEPHRITIS
+#3498DB
+PETER RIVER
+#2980B9
+BELIZE HOLE
+#9B59B6
+AMETHYST
+#8E44AD
+WISTERIA
+#34495E
+WET ASPHALT
+#2C3E50
+MIDNIGHT BLUE
+*/

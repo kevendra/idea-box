@@ -1,0 +1,30 @@
+<fieldset class="idea-add-section" data-ng-init="init()">
+  <legend>Add New Idea</legend>
+
+  <div data-cdk-idea-tree data-ng-model="ui.parentIdea"></div>
+  <form>
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" placeholder="Title" data-ng-model="model.title"/>
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <!-- <textarea class="form-control" id="description" placeholder="Description" rows="5" data-ng-model="model.description"></textarea> -->
+      <div id="description" data-text-angular data-ng-model="model.description"></div>
+      <span class="small text-danger">* Feel free to mention your full name in the description to enable folks to get in touch with you.</span>
+    </div>
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select class="form-control" id="category" data-ng-model="model.category">
+        <option data-ng-repeat="item in ui.categoryItems" value="{{item.key}}" data-ng-selected="item.key ===  model.category">
+          {{item.value}}
+        </option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-success" data-ng-click="addUpdateIdea()">Submit</button>
+    <button type="submit" class="btn btn-default" data-ng-click="init()">Reset</button>
+  </form>
+
+</fieldset>
+<br/>
+<br/>

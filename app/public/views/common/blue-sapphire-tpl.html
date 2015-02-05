@@ -1,0 +1,10 @@
+  <div data-ng-controller="MainController">
+    <div class="header" data-ng-include="header.url"></div>
+    <div data-ng-include="navigation.url" data-ng-show="user.authenticated"></div>
+  </div>
+
+   <!-- Add your site or application content here -->
+  <div class="container">
+    <alert-message messages="rootUi.msg" ></alert-message>
+    <div data-ui-view></div>
+  </div> 
