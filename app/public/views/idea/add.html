@@ -2,10 +2,11 @@
   <legend>Add New Idea</legend>
 
   <div data-cdk-idea-tree data-ng-model="ui.parentIdea"></div>
-  <form>
-    <div class="form-group">
+
+  <form name="form">
+    <div class="form-group" data-ng-class="{'has-error' : form.title.$invalid}">
       <label for="title">Title</label>
-      <input type="text" class="form-control" id="title" placeholder="Title" data-ng-model="model.title"/>
+      <input type="text" class="form-control" id="title" name="title" placeholder="Title" data-ng-model="model.title" data-ng-required="true"/>
     </div>
     <div class="form-group">
       <label for="description">Description</label>
@@ -13,15 +14,15 @@
       <div id="description" data-text-angular data-ng-model="model.description"></div>
       <span class="small text-danger">* Feel free to mention your full name in the description to enable folks to get in touch with you.</span>
     </div>
-    <div class="form-group">
+    <div class="form-group" data-ng-class="{'has-error' : form.category.$invalid}">
       <label for="category">Category</label>
-      <select class="form-control" id="category" data-ng-model="model.category">
+      <select class="form-control" id="category" name="category" data-ng-model="model.category" data-ng-required="true">
         <option data-ng-repeat="item in ui.categoryItems" value="{{item.key}}" data-ng-selected="item.key ===  model.category">
           {{item.value}}
         </option>
       </select>
     </div>
-    <button type="submit" class="btn btn-success" data-ng-click="addUpdateIdea()">Submit</button>
+    <button type="submit" class="btn btn-success" data-ng-click="addUpdateIdea()" data-ng-disabled="!form.$valid">Submit</button>
     <button type="submit" class="btn btn-default" data-ng-click="init()">Reset</button>
   </form>
 

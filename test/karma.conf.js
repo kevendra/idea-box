@@ -28,6 +28,12 @@ module.exports = function(config) {
       // 'bower_components/angular-touch/angular-touch.js',
       'bower_components/angular-ui-router/release/angular-ui-router.js',
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+      'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+
+      'bower_components/textAngular/dist/textAngular-rangy.min.js',
+      'bower_components/textAngular/dist/textAngular-sanitize.min.js',
+      'bower_components/textAngular/dist/textAngular.min.js',
+
       'bower_components/lodash/dist/lodash.js',
       'app/public/scripts/**/*.js',
       'test/mock/**/*.js',

@@ -3,8 +3,10 @@
     <div class="media-left"></div>    
     <div class="media-body">
       <h4 class="media-heading">
-        {{idea.title}} <span class="small text-warning">({{idea.category}})</span>
+        {{idea.title}} <span class="small">({{idea.category}})</span>
       </h4>
+      <!-- date EEEE MMM dd, yyyy -->
+      <div class="small text-warning" >{{idea.created | date : 'EEEE MMM d, y h:mm a'}}</div>
       <span ng-bind-html="idea.description"></span>
       <!-- <a data-ng-click="reply(idea)" class="alert-link">Reply</a> -->
       <button type="button" class="btn btn-xs btn-default" data-ng-click="reply(idea)" data-ng-hide="hideReply">Reply</button>

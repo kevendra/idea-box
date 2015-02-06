@@ -17,7 +17,7 @@ angular
     $scope.ui.selectedCategory = 'all';
 
     $scope.model = angular.copy(emptyModel);
-    $scope.model.category = 'technology';
+    //$scope.model.category = 'technology';
   };
   var openModelDialogDelete = function () {
     var modalInstance = $modal.open({
