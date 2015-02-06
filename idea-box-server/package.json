@@ -13,7 +13,7 @@
     "ejs": "*",
     "express": "*",
     "method-override": "*",
-    "mongoose": "*",
+    "mongodb": "*",
     "morgan": "*",
     "node-sort": "*",
     "passport": "*",
