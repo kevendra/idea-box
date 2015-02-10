@@ -1,0 +1,25 @@
+{
+  "name": "vasmbit",
+  "description": "Map your run",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.10.1",
+    "connect": "*",
+    "connect-flash": "*",
+    "cookie": "*",
+    "cookie-parser": "*",
+    "cookie-session": "*",
+    "ejs": "*",
+    "express": "*",
+    "method-override": "*",
+    "mongodb": "*",
+    "morgan": "*",
+    "node-sort": "*",
+    "passport": "*",
+    "passport-local": "*",
+    "request": "*",
+    "serve-favicon": "*",
+    "serve-static": "*"
+  }
+}
