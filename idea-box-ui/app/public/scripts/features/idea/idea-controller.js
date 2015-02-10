@@ -6,7 +6,7 @@ angular
 
   /* ************************************ Private object ************************************ */
   var emptyUi = {categoryItems: null, ideaList: null, selectedCategory: null, parentIdea: null};
-  var emptyModel = {id:null, title: null, description: null, category: null, parentId:null};
+  var emptyModel = {_id:null, title: null, description: null, category: null, parentId:null};
 
   var reset = function(){
     $scope.ui = angular.copy(emptyUi);
@@ -34,7 +34,7 @@ angular
     });
   };
   var deleteIdea = function(){
-    IdeaService.deleteIdea($scope.model.id).then(function(response) {
+    IdeaService.deleteIdea($scope.model._id).then(function(response) {
       $scope.initList();
     });
   };
@@ -56,7 +56,7 @@ angular
     getIdeaList();
   };
   $scope.addUpdateIdea = function(){
-    $scope.model.id = new Date().getTime();
+    //$scope.model._id = new Date().getTime();//mogo will generate
     IdeaService.addUpdateIdea($scope.model).then(function(response) {
       reset();
     });
@@ -81,7 +81,7 @@ angular
       //console.log('REPLY-EVENT '+ JSON.stringify(arguments[1]));
       parentIdea.ideaList = null;
       $scope.ui.parentIdea = angular.copy(parentIdea);
-      $scope.model.parentId = parentIdea.id;
+      $scope.model.parentId = parentIdea._id;
       $scope.model.category = parentIdea.category;
     }
   });

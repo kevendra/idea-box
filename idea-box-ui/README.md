@@ -35,6 +35,8 @@ $ sudo npm install -g generator-angular
 
 $ git clone https://github.com/kevendra/idea-box.git
 $ cd idea-box/idea-box-ui
+$ npm install
+$ bower install
 $ grunt serve
 ```
 to generate dist
