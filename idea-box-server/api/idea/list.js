@@ -10,6 +10,20 @@ var successResult = {
     "error": null
 };
 
+var failedResult = {
+    "status": "FAILED",
+    "data": {},
+    "msg": [{
+        "type": "danger",
+        "value": [{
+            "title": "Error",
+            "text": "Error retriving the list of ideas",
+            "param": null
+        }]
+    }],
+    error: "failed"
+};
+
 
 
 function getIdeaList(req, res, next) {
@@ -23,7 +37,7 @@ function getIdeaList(req, res, next) {
     }
     Idea.find(filter).sort('-createdOn').lean().exec(function(err, ideas) {
         if (err) {
-            res.send(500);
+            res.status(500).json(failedResult);
             return;
         }
         var tree = treeStructure.unflatten(treeStructure.addParentIdIfMissing(ideas));
