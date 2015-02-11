@@ -20,7 +20,8 @@
     "passport-local": "*",
     "request": "*",
     "serve-favicon": "*",
-    "serve-static": "*"
+    "serve-static": "*",
+    "underscore": "^1.7.0"
   },
   "devDependencies": {
     "basic-auth-connect": "^1.0.0",
