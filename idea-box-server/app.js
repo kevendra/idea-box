@@ -16,7 +16,9 @@ var mongoose = require('mongoose');
 
 var app = express();
 
-
+app.set('views', __dirname + '/views');
+app.engine('html', ejs.renderFile);
+app.set('view engine', 'html');
 
 console.log('idea is ' + JSON.stringify(idea));
 
@@ -40,14 +42,16 @@ var password = "iamadmin123";
 app.use('/api/admin/idea', basicAuth(username, password));
 
 
-mongoose.connect('mongodb://localhost:27017/ideabox2');
+//mongoose.connect('mongodb://localhost:27017/ideabox2');
+//var url = 'mongodb://localhost:27017/ideabox';
+mongoose.connect('mongodb://localhost:27017/ideaboxtest');
 mongoose.model('Idea', require('./models/idea').Idea);
 
 var idea = require('./config/config').idea;
 
 
 
-app.use(function(req, res, next) { 
+app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
@@ -55,12 +59,12 @@ app.use(function(req, res, next) {
 
 console.log('Function is ' + JSON.stringify(idea.list));
 
-app.get('/api/idea/idea-list.json', idea.list); 
+app.get('/api/idea/idea-list.json', idea.list);
 app.post('/api/idea/add-update-idea.json', idea.addOrUpdateIdea);
 
 
 
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log("Express server listening on port " + app.get('port'));
+http.createServer(app).listen(app.get('port'), function() {
+    console.log("Express server listening on port " + app.get('port'));
 });
