@@ -14,13 +14,23 @@ var loggerExpress = require("morgan");
 var mongoose = require('mongoose');
 
 
-var app = express();
 
-app.set('views', __dirname + '/views');
+var app = express();
 app.engine('html', ejs.renderFile);
 app.set('view engine', 'html');
 
-console.log('idea is ' + JSON.stringify(idea));
+app.use('/',express.static(__dirname + '/public'));
+app.use('/',express.static(__dirname + '/'));
+
+app.use('/public',express.static(__dirname + '/public'));
+app.use('/bower_components',express.static(__dirname + '/bower_components'));
+
+//app.set('views', __dirname + '/views');
+
+
+
+
+
 
 app.set('port', process.env.PORT || 8090);
 app.use(cookieParser());
@@ -68,3 +78,5 @@ app.post('/api/idea/add-update-idea.json', idea.addOrUpdateIdea);
 http.createServer(app).listen(app.get('port'), function() {
     console.log("Express server listening on port " + app.get('port'));
 });
+
+module.exports = app;
