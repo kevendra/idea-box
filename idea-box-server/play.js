@@ -1,6 +1,8 @@
 var express = require('express')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , _ =require('underscore') 
+  , ObjectID = require('mongodb').ObjectID;
   var ejs = require('ejs');
 
 var MongoClient = require('mongodb').MongoClient;
@@ -25,17 +27,49 @@ var deleteIdea = function(db,title,callback){
      callback(err);
   });
 };
-var findIdeas = function(db, callback) {
+var unflatten = function(array,parent,tree){
+  tree = typeof tree !== 'undefined' ? tree : [];
+    parent = typeof parent !== 'undefined' ? parent : { _id: 0 };
+        
+    var children = _.filter( array, function(child){ return child.parentId == parent._id; });
+    
+    if( !_.isEmpty( children )  ){
+        if( parent._id == 0 ){
+           tree = children;   
+        }else{
+           parent['ideaList'] = children
+        }
+        _.each( children, function( child ){ unflatten( array, child ) } );                    
+    }
+    
+    return tree;
+}
+var addParentIdIfMissing = function(array){
+   _.each( array, function( item ){
+       if(item && ! item.parentId){
+           item.parentId = 0;
+       }      
+    });
+    return array;
+}
+
+var findIdeas = function(db, callback,req) {
   var collection = db.collection('ideas');
   // Find some documents
-  collection.find({},{},{sort:[["createdOn","desc"]]}).toArray(function(err, ideas) {
+ var filter = {};
+  var category = req.query.category;
+ if(category){
+  filter = {category:category};
+}
+collection.find(filter,{},{sort:[["createdOn","desc"]]}).toArray(function(err, ideas) {
     console.log("Found the following records");
-    callback(ideas);
+    tree = unflatten( addParentIdIfMissing(ideas) );
+    callback(tree);
   });
 }
 var persistIdea = function(ideaData,db,callback){
  var collection = db.collection('ideas');
-  collection.insert(ideaData,function(err,result){
+  collection.update({_id:ideaData._id},ideaData,{upsert:true},function(err,result){
    callback(result,err);
 });
 }
@@ -103,7 +137,7 @@ MongoClient.connect(url, function(err, db) {
        res.write(JSON.stringify(result));
        db.close();
         res.end();
-  });
+  },req);
   
 });
   });
@@ -111,12 +145,17 @@ app.post('/api/idea/add-update-idea.json',function(req,res){
      var title = req.body.title;
      var description=req.body.description;
      var category = req.body.category;
+     var parentId = req.body.parentId;
+     var id = new ObjectID(req.body._id);
+      
     var createdDate = new Date();
      var ideaData = {
 		"title":title,
                 "description":description,
                 "category":category,
-                "createdOn":createdDate
+                "createdOn":createdDate,
+                "parentId":parentId,
+                "_id":id
       };
 MongoClient.connect(url, function(err, db) {
   console.log("Connected correctly to server");
