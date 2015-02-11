@@ -35,4 +35,5 @@ src/main/webapp/robots.txt
 
 Runner.java
 Temp.java
-CDK_Global_Logo.png
+pom.xml
+dist.zip

@@ -9,7 +9,10 @@
       <div class="small text-warning" >{{idea.createdOn | date : 'EEEE MMM d, y h:mm a'}}</div>
       <span ng-bind-html="idea.description"></span>
       <!-- <a data-ng-click="reply(idea)" class="alert-link">Reply</a> -->
-      <button type="button" class="btn btn-xs btn-default" data-ng-click="reply(idea)" data-ng-hide="hideReply">Reply</button>
+      <button type="button" class="btn btn-xs hidden btn-default" data-ng-click="reply(idea)" data-ng-hide="hideReply">Reply</button>
+      <button type="button" class="btn btn-xs hidden btn-default" data-ng-click="edit(idea)" data-ng-hide="hideReply">Edit</button>
+      <button type="button" class="btn btn-xs hidden btn-default" data-ng-click="delete(idea)" data-ng-hide="hideReply">Delete</button>
+
       <div data-ng-repeat="childIdea in idea.ideaList">
         <div data-cdk-idea-tree data-ng-model="childIdea"></div>
       </div>

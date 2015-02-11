@@ -73,6 +73,19 @@ angular
     //$scope.model.title = parentIdea.title;
     //$state.go('idea.add');
   };
+  
+  $scope.edit = function(model){
+    reset();
+    $rootScope.$broadcast('EDIT-EVENT', model);
+  };//end deleteIdea  
+  $scope.delete = function(model){
+    $scope.model = model;
+    openModelDialogDelete();
+  };//end deleteIdea
+  $scope.categoryChange = function(){
+    getIdeaList();
+  }
+
   $scope.$on("REPLY-EVENT",function () {
     var parentIdea = arguments[1]
     if(parentIdea){
@@ -85,12 +98,16 @@ angular
       $scope.model.category = parentIdea.category;
     }
   });
-  $scope.deleteIdea = function(model){
-    $scope.model = model;
-    openModelDialogDelete();
-  };//end deleteIdea
-  $scope.categoryChange = function(){
-    getIdeaList();
-  }
+  $scope.$on("EDIT-EVENT",function () {
+    var model = arguments[1]
+    if(model){
+      console.log('EDIT-EVENT EDIT-EVENT');
+      reset();
+      //console.log('REPLY-EVENT '+ JSON.stringify(arguments[1]));
+      model.ideaList = null;
+      $scope.ui.parentIdea = angular.copy(model);
+      $scope.model = angular.copy(model);
+    }
+  });
   
 });
