@@ -15,3 +15,6 @@
   - NodeJS
   - ExpressJS
   - MongoDB
+  - Mocha
+  - SinonJS
+  - Chai
