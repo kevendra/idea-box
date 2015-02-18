@@ -58,8 +58,10 @@ app.use('/api/admin/idea', basicAuth(username, password));
 //var url = 'mongodb://localhost:27017/ideabox';
 mongoose.connect('mongodb://localhost:27017/ideabox');
 mongoose.model('Idea', require('./models/idea').Idea);
+mongoose.model('User', require('./models/user').User);
 
 var idea = require('./config/config').idea;
+var user = require('./config/config').user;
 
 
 
@@ -73,6 +75,7 @@ console.log('Function is ' + JSON.stringify(idea.list));
 
 app.get('/api/idea/idea-list.json', idea.list);
 app.post('/api/idea/add-update-idea.json', idea.addOrUpdateIdea);
+app.post('/api/user/add-update-user.json', user.saveOrUpdateThirdPartyUser);
 
 
 
