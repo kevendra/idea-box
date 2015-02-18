@@ -37,7 +37,7 @@ angular.module(_SERVICES_, []);
 /*
   browser refresh call
 */
-angular.module(_APP_).run(function($rootScope, ENV, facebook, IdeaService, $state) {
+angular.module(_APP_).run(function($rootScope, ENV, facebook, IdeaService, $state, LocalService) {
     console.log('angular.module app run ' + app);
 
     //var emptyRootModel = {user};
@@ -46,13 +46,14 @@ angular.module(_APP_).run(function($rootScope, ENV, facebook, IdeaService, $stat
     $rootScope.rootModel.calDateFormat = ENV.dateFormat;
    
     //  AuthenticationService.authCheck();
-    authenticate($rootScope, facebook, $state);
+    authenticate($rootScope, facebook, $state, LocalService);
 
      $rootScope.signOut = function() {
         var promise = facebook.logOut();
         promise.then(function(success) {
             $rootScope.userDetails = {};
             $rootScope.userDetails.isLoggedIn = false;
+            LocalService.unset('user');
             $state.transitionTo('main');
         });
     };
@@ -60,7 +61,7 @@ angular.module(_APP_).run(function($rootScope, ENV, facebook, IdeaService, $stat
 });
 
 
-function authenticate($rootScope, facebook, $state) {
+function authenticate($rootScope, facebook, $state, LocalService) {
     var checkIfUserIsAlreadyLoggeIn = function() {
         var promise = facebook.checkLoginStatus();
         promise.then(function(response) {
@@ -71,6 +72,8 @@ function authenticate($rootScope, facebook, $state) {
             $rootScope.userDetails.accessToken = response.accessToken;
             $rootScope.userDetails.userPic = 'http://graph.facebook.com/' + response.id + '/picture';
             $rootScope.userDetails.displayName = response.name;
+            var user = angular.copy(response);
+            LocalService.set('user', user);
 
             //$scope.$apply();
         }, function(err) {

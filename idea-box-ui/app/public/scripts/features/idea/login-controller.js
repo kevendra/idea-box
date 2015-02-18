@@ -2,7 +2,7 @@
 
 angular
     .module(_CONTROLLERS_)
-    .controller('LoginController', function($rootScope, $scope, facebook, $state) {
+    .controller('LoginController', function($rootScope, $scope, facebook, $state, LocalService) {
 
         $scope.test = '123';
 
@@ -20,6 +20,7 @@ angular
                 $rootScope.userDetails.displayName = response.name;
 
                 var user = angular.copy($scope.userDetails);
+                LocalService.set('user', user);
                 //$scope.$emit('userLoggedIn', user);
                 $state.transitionTo('main');
             }, function(err) {
