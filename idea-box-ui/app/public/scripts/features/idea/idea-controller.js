@@ -2,15 +2,17 @@
 
 angular
 .module(_CONTROLLERS_)
-.controller('IdeaController', function ($rootScope, $scope, $modal, $state, ENV, IdeaService) {
+.controller('IdeaController', function ($rootScope, $scope, $modal, $state, ENV, IdeaService, facebook) {
 
   /* ************************************ Private object ************************************ */
   var emptyUi = {categoryItems: null, ideaList: null, selectedCategory: null, parentIdea: null};
   var emptyModel = {_id:null, title: null, description: null, category: null, parentId:null};
+  $scope.test = '123';
 
   var reset = function(){
     $scope.ui = angular.copy(emptyUi);
     $scope.ui.categoryItems = angular.copy(ENV.categoryItems);
+    
 
     $scope.ui.categoryItemsWithAll = angular.copy(ENV.categoryItems);
     $scope.ui.categoryItemsWithAll.push({key:'all',value:'All'});
@@ -109,5 +111,8 @@ angular
       $scope.model = angular.copy(model);
     }
   });
+
+
+  
   
 });

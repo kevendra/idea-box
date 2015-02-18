@@ -13,6 +13,6 @@ angular.module(_APP_)
     .state('idea', {url: '/idea', templateUrl: ENV.template})
     .state('idea.add', {url: '/add', templateUrl: 'public/views/idea/add.html', controller: 'IdeaController'})
     .state('idea.list', {url: '/list', templateUrl: 'public/views/idea/list.html', controller: 'IdeaController'})
-    ;
+    .state('idea.login', {url: '/login', templateUrl: 'public/views/idea/login.html'});
 
 });
