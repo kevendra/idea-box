@@ -37,6 +37,8 @@ function addOrUpdateIdea(req, res, next) {
     var category = req.body.category;
     var createdOn = new Date();
     var parentId = req.body.parentId;
+    var userId = req.body.userId;
+    var userName = req.body.userName;
     var Q = dependency.getQ();
     var deferred = Q.defer();
 
@@ -50,6 +52,8 @@ function addOrUpdateIdea(req, res, next) {
                 doc.category = category;
                 doc.createdOn = createdOn;
                 doc.parentId = parentId;
+                doc.userId = userId;
+                doc.userName = userName;
                 doc.save(function(err, doc) {
                     if (!err) {
                         res.status(200).json(successResult);
@@ -71,6 +75,8 @@ function addOrUpdateIdea(req, res, next) {
         idea.category = category;
         idea.createdOn = createdOn;
         idea.parentId = parentId;
+        idea.userId = userId;
+        idea.userName = userName;
         idea.save(function(err, doc) {
             console.log('Error is **** ' + err);
             if (!err) {
