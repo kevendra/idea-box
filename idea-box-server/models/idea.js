@@ -9,7 +9,9 @@ var idea = new Schema({
     createdOn: {type: Date, required: true},
     category: {type: String, required: true},
     ideaList: [],
-    parentId: {type: String}
+    parentId: {type: String},
+    userId: {type: String},
+    userName: {type: String}
 });
 
 module.exports = {

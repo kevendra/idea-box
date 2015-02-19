@@ -2,7 +2,7 @@
 
 angular
 .module(_CONTROLLERS_)
-.controller('IdeaController', function ($rootScope, $scope, $modal, $state, ENV, IdeaService, facebook) {
+.controller('IdeaController', function ($rootScope, $scope, $modal, $state, ENV, IdeaService, facebook, LocalService) {
 
   /* ************************************ Private object ************************************ */
   var emptyUi = {categoryItems: null, ideaList: null, selectedCategory: null, parentIdea: null};
@@ -59,6 +59,10 @@ angular
   };
   $scope.addUpdateIdea = function(){
     //$scope.model._id = new Date().getTime();//mogo will generate
+    var user = LocalService.get('user');
+    var userDetailsObj = angular.fromJson(user)
+    $scope.model.userId = userDetailsObj.id;
+    $scope.model.userName = userDetailsObj.name;
     IdeaService.addUpdateIdea($scope.model).then(function(response) {
       reset();
     });

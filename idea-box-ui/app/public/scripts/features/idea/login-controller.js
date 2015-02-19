@@ -2,7 +2,7 @@
 
 angular
     .module(_CONTROLLERS_)
-    .controller('LoginController', function($rootScope, $scope, facebook, $state, LocalService) {
+    .controller('LoginController', function($rootScope, $scope, facebook, $state, LocalService, UserService, OauthUserBuilderFactory) {
 
         $scope.test = '123';
 
@@ -19,10 +19,13 @@ angular
                 $rootScope.userDetails.userPic = 'http://graph.facebook.com/' + response.id + '/picture';
                 $rootScope.userDetails.displayName = response.name;
 
-                var user = angular.copy($scope.userDetails);
-                LocalService.set('user', user);
-                //$scope.$emit('userLoggedIn', user);
-                $state.transitionTo('main');
+                
+                var user = OauthUserBuilderFactory.buildUserObjectAfterOauthAuthentication('FACEBOOK', response);
+                LocalService.set('user', angular.toJson(user));
+                UserService.addUpdateUser({'user': user}).then(function(response) {
+                    $state.transitionTo('main');
+                });
+                
             }, function(err) {
                 console.error('Error is ' + err);
             });

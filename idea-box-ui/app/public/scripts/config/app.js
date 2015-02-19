@@ -37,18 +37,18 @@ angular.module(_SERVICES_, []);
 /*
   browser refresh call
 */
-angular.module(_APP_).run(function($rootScope, ENV, facebook, IdeaService, $state, LocalService) {
+angular.module(_APP_).run(function($rootScope, ENV, facebook, IdeaService, $state, LocalService, UserService, OauthUserBuilderFactory) {
     console.log('angular.module app run ' + app);
 
     //var emptyRootModel = {user};
     $rootScope.rootUi = angular.copy(ENV.emptyRootUi);
     $rootScope.rootModel = angular.copy(ENV.emptyRootModel);
     $rootScope.rootModel.calDateFormat = ENV.dateFormat;
-   
-    //  AuthenticationService.authCheck();
-    authenticate($rootScope, facebook, $state, LocalService);
 
-     $rootScope.signOut = function() {
+    //  AuthenticationService.authCheck();
+    authenticate($rootScope, facebook, $state, LocalService, UserService, OauthUserBuilderFactory);
+
+    $rootScope.signOut = function() {
         var promise = facebook.logOut();
         promise.then(function(success) {
             $rootScope.userDetails = {};
@@ -61,19 +61,27 @@ angular.module(_APP_).run(function($rootScope, ENV, facebook, IdeaService, $stat
 });
 
 
-function authenticate($rootScope, facebook, $state, LocalService) {
+function authenticate($rootScope, facebook, $state, LocalService, UserService, OauthUserBuilderFactory) {
     var checkIfUserIsAlreadyLoggeIn = function() {
         var promise = facebook.checkLoginStatus();
         promise.then(function(response) {
-            
+
             $rootScope.userDetails = {};
             $rootScope.userDetails.isLoggedIn = true;
             $rootScope.userDetails.userId = response.id;
             $rootScope.userDetails.accessToken = response.accessToken;
             $rootScope.userDetails.userPic = 'http://graph.facebook.com/' + response.id + '/picture';
             $rootScope.userDetails.displayName = response.name;
-            var user = angular.copy(response);
-            LocalService.set('user', user);
+
+            var user = OauthUserBuilderFactory.buildUserObjectAfterOauthAuthentication('FACEBOOK', response);
+            LocalService.set('user', angular.toJson(user));
+            
+
+            UserService.addUpdateUser({
+                'user': user
+            }).then(function(response) {
+                //$state.transitionTo('main');
+            });
 
             //$scope.$apply();
         }, function(err) {
