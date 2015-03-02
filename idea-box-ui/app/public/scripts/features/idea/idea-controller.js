@@ -61,14 +61,18 @@ angular
     //$scope.model._id = new Date().getTime();//mogo will generate
     var user = LocalService.get('user');
     var userDetailsObj = angular.fromJson(user)
-    $scope.model.userId = userDetailsObj.id;
-    $scope.model.userName = userDetailsObj.name;
+    $scope.model.userId = userDetailsObj.thirdPartyOauthUserId;
+    $scope.model.userName = userDetailsObj.displayName;
     IdeaService.addUpdateIdea($scope.model).then(function(response) {
       reset();
     });
   };//end addUpdateIdea
 
-  $scope.reply = function(parentIdea){
+  $scope.reply = function(parentIdea){   
+    if(!$rootScope.userDetails || !$rootScope.userDetails.isLoggedIn) {
+      alert('Please Login to Reply!!!!!!!');
+      return;
+    }
     reset();
     $rootScope.$broadcast('REPLY-EVENT', parentIdea);
 
