@@ -22,9 +22,10 @@ angular
                 
                 var user = OauthUserBuilderFactory.buildUserObjectAfterOauthAuthentication('FACEBOOK', response);
                 LocalService.set('user', angular.toJson(user));
-                UserService.addUpdateUser({'user': user}).then(function(response) {
-                    $state.transitionTo('main');
-                });
+                $state.transitionTo('main');
+                // UserService.addUpdateUser({'user': user}).then(function(response) {
+                //     $state.transitionTo('main');
+                // });
                 
             }, function(err) {
                 console.error('Error is ' + err);

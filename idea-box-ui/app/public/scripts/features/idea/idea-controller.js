@@ -61,7 +61,7 @@ angular
     //$scope.model._id = new Date().getTime();//mogo will generate
     var user = LocalService.get('user');
     var userDetailsObj = angular.fromJson(user)
-    $scope.model.userId = userDetailsObj.thirdPartyOauthUserId;
+    $scope.model.userId = userDetailsObj.userId;
     $scope.model.userName = userDetailsObj.displayName;
     IdeaService.addUpdateIdea($scope.model).then(function(response) {
       reset();

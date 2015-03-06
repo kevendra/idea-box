@@ -46,11 +46,11 @@
 
                     <span class="dropdown" dropdown >
                       <a href class="dropdown-toggle" dropdown-toggle>
-                        <span> <img ng-src="{{userDetails.userPic}}"/></span> Welcome, {{userDetails.displayName}}
+                        <span> <img class="profile-image img-circle" ng-src="{{userDetails.userPic}}"/></span> Welcome, {{userDetails.displayName}}
                       </a>
                       <ul class="dropdown-menu">
-                        <li class="logout-button" ng-click="signOut()">
-                          <span class="fa fa-sign-out"></span> LogOut
+                        <li class="logout-button">
+                          <a class="fa fa-sign-out" ng-click = "signOut()" >LogOut</a>
                         </li>
                       </ul>
                   </span>

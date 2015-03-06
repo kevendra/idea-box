@@ -27,6 +27,7 @@
     "_APP_": false,
     "_CONTROLLERS_": false,
     "_DIRECTIVES_": false,
-    "_FILTERS_": false
+    "_FILTERS_": false,
+    "FB": false
   }
 }

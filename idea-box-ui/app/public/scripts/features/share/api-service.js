@@ -24,5 +24,6 @@ angular.module(_APP_)
   IDEA_LIST:              IDEA + '/idea-list.json',
   IDEA_DELETE:            IDEA + '/delete-idea.json',
   ADD_UPDATE_IDEA:        IDEA + '/add-update-idea.json',
-  ADD_UPDATE_USER:        USER + '/add-update-user.json'	
+  ADD_UPDATE_USER:        USER + '/add-update-user.json',
+  IS_USER_LOGGEDIN:    	  USER + '/get-logged-in-user.json',	
 });

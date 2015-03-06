@@ -1,22 +1,5 @@
-
 var dependency = require('../dependency');
 
-var saveOrUpdateThirdPartyUser = function(req, res) {
-    var user = req.body.user;
-    var promise = updateThirdPartyUser(user);
-    promise.then(function(doc) {
-            dependency.getUserModel().findOne({
-                'thirdPartyOauthUserId': user.thirdPartyOauthUserId
-            }, function(err, doc) {
-                console.log(JSON.stringify(doc));
-                res.status(200).json(doc);
-            });
-
-        })
-        .fail(function(reason) {
-            res.status(200).json(reason);
-        });
-}
 
 
 function updateThirdPartyUser(user) {
@@ -47,5 +30,5 @@ function updateThirdPartyUser(user) {
 
 
 module.exports = {
-	saveOrUpdateThirdPartyUser: saveOrUpdateThirdPartyUser 
+    saveOrUpdateThirdPartyUser: updateThirdPartyUser
 }

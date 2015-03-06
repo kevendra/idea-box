@@ -6,6 +6,8 @@ angular
 
   $scope.reply = function(){
     console.log('here in scope');
+
+    
     $state.go('signin');
   };
 

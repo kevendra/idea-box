@@ -34,10 +34,58 @@ angular.module(_FILTERS_, []);
 angular.module(_MODULES_, []);
 angular.module(_SERVICES_, []);
 
+var authenticate = function($rootScope , $state, LocalService, UserService) {
+    var checkIfUserIsAlreadyLoggeIn = function() {
+        //var promise = facebook.checkLoginStatus();
+        var promise = UserService.checkIfUserIsLoggedIn();
+        promise.then(function(response) {
+
+            // $rootScope.userDetails = {};
+            // $rootScope.userDetails.isLoggedIn = true;
+            // $rootScope.userDetails.userId = response.id;
+            // $rootScope.userDetails.accessToken = response.accessToken;
+            // $rootScope.userDetails.userPic = 'http://graph.facebook.com/' + response.id + '/picture';
+            // $rootScope.userDetails.displayName = response.name;
+
+            $rootScope.userDetails = {};
+            $rootScope.userDetails.isLoggedIn = true;
+            $rootScope.userDetails.userId = response.data.thirdPartyOauthUserId;
+            $rootScope.userDetails.accessToken = response.data.accessToken;
+            $rootScope.userDetails.userPic = response.data.thumbnail;
+            $rootScope.userDetails.displayName = response.data.displayName;
+            //window.alert(JSON.stringify($rootScope.userDetails.displayName));
+
+            //var user = OauthUserBuilderFactory.buildUserObjectAfterOauthAuthentication('FACEBOOK', response);
+            //LocalService.set('user', angular.toJson(user));
+            LocalService.set('user', angular.toJson($rootScope.userDetails));
+
+            
+
+            // UserService.addUpdateUser({
+            //     'user': user
+            // }).then(function() {
+            //     //$state.transitionTo('main');
+            // });
+
+            //$scope.$apply();
+        }, function(err) {
+            if (err === 'unknown') {
+                //$scope.loginToFacebook();
+            }
+            $state.transitionTo('main');
+        });
+    };
+
+    setTimeout(function() {
+        checkIfUserIsAlreadyLoggeIn();
+    }, 1000);
+};
+
+
 /*
   browser refresh call
 */
-angular.module(_APP_).run(function($rootScope, ENV, facebook, IdeaService, $state, LocalService, UserService, OauthUserBuilderFactory) {
+angular.module(_APP_).run(function($rootScope, ENV , IdeaService, $state, LocalService, UserService) {
     console.log('angular.module app run ' + app);
 
     //var emptyRootModel = {user};
@@ -46,53 +94,23 @@ angular.module(_APP_).run(function($rootScope, ENV, facebook, IdeaService, $stat
     $rootScope.rootModel.calDateFormat = ENV.dateFormat;
 
     //  AuthenticationService.authCheck();
-    authenticate($rootScope, facebook, $state, LocalService, UserService, OauthUserBuilderFactory);
+    authenticate($rootScope, $state, LocalService, UserService);
+
+    // $rootScope.signOut = function() {
+    //     var promise = facebook.logOut();
+    //     promise.then(function() {
+    //         $rootScope.userDetails = {};
+    //         $rootScope.userDetails.isLoggedIn = false;
+    //         LocalService.unset('user');
+    //         $state.transitionTo('main');
+    //     });
+    // };
 
     $rootScope.signOut = function() {
-        var promise = facebook.logOut();
-        promise.then(function(success) {
-            $rootScope.userDetails = {};
-            $rootScope.userDetails.isLoggedIn = false;
-            LocalService.unset('user');
-            $state.transitionTo('main');
-        });
+        LocalService.unset('user');
+        window.location.href = 'http://localhost:3000/logout';
     };
 
 });
 
 
-function authenticate($rootScope, facebook, $state, LocalService, UserService, OauthUserBuilderFactory) {
-    var checkIfUserIsAlreadyLoggeIn = function() {
-        var promise = facebook.checkLoginStatus();
-        promise.then(function(response) {
-
-            $rootScope.userDetails = {};
-            $rootScope.userDetails.isLoggedIn = true;
-            $rootScope.userDetails.userId = response.id;
-            $rootScope.userDetails.accessToken = response.accessToken;
-            $rootScope.userDetails.userPic = 'http://graph.facebook.com/' + response.id + '/picture';
-            $rootScope.userDetails.displayName = response.name;
-
-            var user = OauthUserBuilderFactory.buildUserObjectAfterOauthAuthentication('FACEBOOK', response);
-            LocalService.set('user', angular.toJson(user));
-            
-
-            UserService.addUpdateUser({
-                'user': user
-            }).then(function(response) {
-                //$state.transitionTo('main');
-            });
-
-            //$scope.$apply();
-        }, function(err) {
-            if (err === 'unknown') {
-                //$scope.loginToFacebook();
-            }
-            $state.transitionTo('main');
-        })
-    };
-
-    setTimeout(function() {
-        checkIfUserIsAlreadyLoggeIn();
-    }, 3000);
-}

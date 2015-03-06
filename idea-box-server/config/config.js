@@ -1,9 +1,15 @@
 module.exports = {
     idea: {
         list: require('../api/idea/list').list,
-        addOrUpdateIdea: require('../api/idea/add').addOrUpdateIdea 
+        addOrUpdateIdea: require('../api/idea/add').addOrUpdateIdea
     },
     user: {
-    	saveOrUpdateThirdPartyUser: require('../api/user/add').saveOrUpdateThirdPartyUser
+        saveOrUpdateThirdPartyUser: require('../api/user/add').saveOrUpdateThirdPartyUser,
+        getLoggedInUser: require('../api/user/userdetails').getLoggedInUser
+    },
+    security: {
+        githubStratergy: require('../api/security/githubStratergy'),
+        oauthInitialization: require('../api/security/oauthInitialization'),
+        securityChain: require('../api/security/securityChain')
     }
 };
