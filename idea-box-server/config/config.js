@@ -1,7 +1,8 @@
 module.exports = {
     idea: {
         list: require('../api/idea/list').list,
-        addOrUpdateIdea: require('../api/idea/add').addOrUpdateIdea
+        addOrUpdateIdea: require('../api/idea/add').addOrUpdateIdea,
+        likeIdea: require('../api/idea/like').addLikeForIdea
     },
     user: {
         saveOrUpdateThirdPartyUser: require('../api/user/add').saveOrUpdateThirdPartyUser,
