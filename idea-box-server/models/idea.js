@@ -11,7 +11,8 @@ var idea = new Schema({
     ideaList: [],
     parentId: {type: String},
     userId: {type: String},
-    userName: {type: String}
+    userName: {type: String},
+    likes:[]
 });
 
 module.exports = {
