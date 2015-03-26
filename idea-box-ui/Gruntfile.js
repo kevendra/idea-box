@@ -18,7 +18,8 @@ module.exports = function (grunt) {
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
-    dist: 'dist'
+    dist: 'dist',
+    webserver: '../idea-box-server/public/'
   };
 
   // Define the configuration for all the tasks
@@ -151,7 +152,15 @@ module.exports = function (grunt) {
           ]
         }]
       },
-      server: '.tmp'
+      server: '.tmp',
+      webserver: {
+        options: {
+            force: true
+        },
+        files: [{
+          src: ['<%= yeoman.webserver %>**']
+        }]
+      }
     },
 
     // Add vendor prefixed styles
@@ -389,7 +398,14 @@ module.exports = function (grunt) {
         cwd: '<%= yeoman.app %>/public/styles',
         dest: '.tmp/public/styles/',
         src: '{,*/}*.css'
+      },
+      webserver: {
+        expand: true,
+        cwd: '<%= yeoman.dist %>',
+        dest: '<%= yeoman.webserver %>',
+        src: ['**']
       }
+
     },
 
     // Run some tasks in parallel to speed up the build process
@@ -462,9 +478,15 @@ module.exports = function (grunt) {
     'htmlmin'
   ]);
 
+  grunt.registerTask('deploy', [
+    'clean:webserver',
+    'copy:webserver'
+  ]);
+
   grunt.registerTask('default', [
     'newer:jshint',
     'test',
-    'build'
+    'build',
+    'deploy'
   ]);
 };
