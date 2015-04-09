@@ -2,7 +2,8 @@ module.exports = {
     idea: {
         list: require('../api/idea/list').list,
         addOrUpdateIdea: require('../api/idea/add').addOrUpdateIdea,
-        likeIdea: require('../api/idea/like').addLikeForIdea
+        likeIdea: require('../api/idea/like').addLikeForIdea,
+        getTheTopLikedIdeas: require('../api/idea/like').getTheTopLikedIdeas
     },
     user: {
         saveOrUpdateThirdPartyUser: require('../api/user/add').saveOrUpdateThirdPartyUser,
